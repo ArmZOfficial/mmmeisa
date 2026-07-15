@@ -80,7 +80,7 @@ export default function HomeClient({ data }: HomeClientProps) {
                 <span className="font-display text-xs sm:text-sm font-extrabold tracking-[0.2em] text-white">
                   WEB BY <span className="bg-gradient-to-r from-pink-glow via-[#ff9ebb] to-white bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(255,111,165,0.9)]">ArmZ</span>
                 </span>
-                <span className="text-pink-glow/80 font-mono text-xs">//</span>
+                <span className="text-pink-glow/80 font-mono text-xs">{"//"}</span>
                 <span className="font-sans text-[10px] font-bold uppercase tracking-wider text-pink-cream/90 group-hover:text-white">
                   CRAFTED WITH ♥
                 </span>

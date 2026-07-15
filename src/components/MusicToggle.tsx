@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -21,6 +22,8 @@ export default function MusicToggle() {
   const desiredPlayRef = useRef<boolean>(false);
 
   useEffect(() => {
+    const container = containerRef.current;
+
     // Dynamically load the YouTube IFrame Player API
     if (!window.YT) {
       const tag = document.createElement("script");
@@ -40,12 +43,12 @@ export default function MusicToggle() {
     }
 
     function initPlayer() {
-      if (playerRef.current || !containerRef.current) return;
+      if (playerRef.current || !container) return;
       
       // Create a dedicated inner DOM node so YT.Player replacement doesn't break React DOM tree
       const targetDiv = document.createElement("div");
-      containerRef.current.innerHTML = "";
-      containerRef.current.appendChild(targetDiv);
+      container.innerHTML = "";
+      container.appendChild(targetDiv);
 
       playerRef.current = new window.YT.Player(targetDiv, {
         height: "1",
@@ -87,8 +90,8 @@ export default function MusicToggle() {
           playerRef.current.destroy();
         } catch {}
       }
-      if (containerRef.current) {
-        containerRef.current.innerHTML = "";
+      if (container) {
+        container.innerHTML = "";
       }
     };
   }, []);
