@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --pink-primary: #f7a8c0;
+  --pink-glow: #ff6fa5;
+  --pink-soft: #fde6ed;
+  --navy-night: #1e2338;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-pink-soft text-navy-night antialiased;
+  overflow-x: hidden;
+}
+
+body.custom-cursor-active,
+body.custom-cursor-active * {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  transform: translate(-4px, -4px);
+  will-change: left, top;
+}
+
+.custom-cursor.cursor-click {
+  transform: translate(-4px, -4px) scale(0.85);
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px rgba(255, 111, 165, 0.6);
+  }
+}
