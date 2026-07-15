@@ -42,7 +42,10 @@ export default function AdminPanel({ initialData }: AdminPanelProps) {
     form.append("file", file);
     form.append("type", type);
     const res = await fetch("/api/admin/upload", { method: "POST", body: form });
-    if (!res.ok) throw new Error("Upload failed");
+    if (!res.ok) {
+      const data = await res.json().catch(() => null);
+      throw new Error(data?.error || "อัปโหลดรูปไม่สำเร็จ (ตรวจสอบขนาดไฟล์ไม่เกิน 3MB)");
+    }
     const { url } = await res.json();
     return url as string;
   };
@@ -63,8 +66,9 @@ export default function AdminPanel({ initialData }: AdminPanelProps) {
         },
       }));
       showToast("อัปโหลดรูปสำเร็จ!", "success");
-    } catch {
-      showToast("อัปโหลดรูปไม่สำเร็จ", "error");
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "อัปโหลดรูปไม่สำเร็จ";
+      showToast(message, "error");
     }
   };
 

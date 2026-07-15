@@ -185,7 +185,7 @@ export default function Hero({ profile, socials }: HeroProps) {
                     className="h-72 sm:h-96 md:h-[400px] w-auto max-w-full object-cover object-top rounded-[2.5rem] select-none pointer-events-none"
                     priority
                     draggable={false}
-                    unoptimized={avatarUrl.startsWith("http") || avatarUrl.startsWith("/uploads")}
+                    unoptimized
                   />
                 </div>
 
